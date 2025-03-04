@@ -1,6 +1,6 @@
 # Web Scraper et Convertisseur Markdown
 
-Un outil Python avancé pour extraire des données à partir de sites web, nettoyer le contenu et le convertir en Markdown de haute qualité pour une utilisation optimale par des systèmes d'IA.
+Un outil Python avancé pour extraire des données à partir de sites web, nettoyer le contenu et le convertir en Markdown de haute qualité pour une utilisation optimale par des LLM.
 
 ## Fonctionnalités
 
