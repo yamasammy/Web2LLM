@@ -1,4 +1,4 @@
-# Web Scraper et Convertisseur Markdown
+# Web Scraper et Convertisseur Markdown pour LLM
 
 Un outil Python avancé pour extraire des données à partir de sites web, nettoyer le contenu et le convertir en Markdown de haute qualité pour une utilisation optimale par des LLM.
 
