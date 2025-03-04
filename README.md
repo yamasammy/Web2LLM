@@ -4,14 +4,18 @@ An advanced Python tool for extracting data from websites, cleaning the content,
 
 ## Features
 
-- **Intelligent content extraction** from web pages with removal of non-relevant elements
-- **Advanced content cleaning**:
-  - Removal of headers, footers, navbars, and sidebars
-  - Complete elimination of CSS and JavaScript
-  - Intelligent detection of navigation elements through content analysis
-- **Optimized Markdown conversion** with multiple cascading methods
-- **REST API** for workflow integration
-- **Local saving** to .md files with relevant name generation
+- **LLM-Optimized Content Extraction**: Intelligently extracts and cleans web content specifically formatted for Large Language Models and AI-powered IDEs like Cursor
+- **AI-Ready Documentation Generation**: Creates markdown files that can be used to feed AI tools with the latest framework documentation, API references, or technical guides
+- **Context Window Optimization**: Removes non-essential elements (headers, footers, navbars) to maximize the useful information within LLM context windows
+- **Knowledge Base Enhancement**: Generates clean, structured markdown perfect for building custom knowledge bases to augment AI capabilities
+- **Framework Documentation Updates**: Easily capture the latest documentation for programming frameworks to keep your AI tools up-to-date
+- **Intelligent Content Processing**:
+  - Removal of distracting UI elements that confuse AI parsers
+  - Complete elimination of CSS and JavaScript that waste token space
+  - Smart detection of navigation elements through semantic analysis
+- **Multiple Output Formats** optimized for different AI consumption patterns
+- **REST API** for seamless integration into AI workflows
+- **Automatic File Management** with intelligent naming for organized knowledge repositories
 
 ## Installation
 
@@ -65,45 +69,44 @@ with open("output.md", "w") as f:
 
 ## Major Improvements
 
-### 1. Intelligent Content Extraction
+### 1. AI-Optimized Content Extraction
 
-- **Complete removal of headers and footers** via an exhaustive list of CSS selectors
-- **Advanced detection of navbars and sidebars**:
-  - By standard CSS selectors
-  - By link density analysis (menus with numerous short links)
-  - By textual content analysis (terms like "menu", "navigation")
-  - By position in the page (first/last elements)
-  - By CSS attributes (reduced width typical of sidebars)
-- **Extraction of additional content** if Readability doesn't extract enough
-- **Balanced and adaptive approach**:
-  - Preservation of rich content (>1000 characters)
-  - Conditional application of cleaning methods
-  - Adjustable thresholds for different types of sites
+- **Token Efficiency**: Removes headers, footers, and navigation elements to maximize useful content within LLM context windows
+- **Advanced AI-Confusing Element Detection**:
+  - Identifies and removes elements by standard CSS selectors
+  - Uses link density analysis to detect navigation menus
+  - Employs semantic content analysis to identify non-essential sections
+  - Recognizes positional patterns typical of UI elements
+  - Detects sidebar elements through structural analysis
+- **Smart Content Preservation**:
+  - Retains information-rich sections (>1000 characters)
+  - Applies adaptive cleaning based on content type
+  - Uses configurable thresholds for different website categories
 
-### 2. Complete Elimination of CSS and JavaScript
+### 2. LLM Context Window Optimization
 
-- **Removal of all script and style tags** and their content
-- **Elimination of JavaScript attributes** (onclick, onload, etc.)
-- **Removal of inline styles** and JavaScript-related classes
-- **Filtering of code blocks** resembling CSS or JavaScript
-- **Cleaning of CDATA sections** that may contain code
+- **Complete removal of token-wasting elements** like scripts, styles, and decorative markup
+- **Elimination of interactive JavaScript attributes** irrelevant to AI processing
+- **Removal of styling information** that consumes valuable context space
+- **Filtering of code snippets** not relevant to the main content
+- **Cleaning of metadata sections** that don't contribute to understanding
 
-### 3. Optimized Markdown Conversion
+### 3. AI-Ready Markdown Generation
 
-- **Multi-method cascading approach**:
-  - Using html2markdown as the main method
-  - Structured extraction with BeautifulSoup as backup
-  - Raw text extraction as a last resort
-- **Complete cleaning of residual HTML tags**
-- **Specific processing** for tables, quotes, code blocks, images
-- **Double cleaning** of spaces and line breaks
+- **Multi-layered conversion strategy**:
+  - Primary conversion optimized for AI readability
+  - Structured extraction fallback for complex layouts
+  - Plain text preservation when structure is less important
+- **Enhanced semantic structure** for better AI comprehension
+- **Special handling** for data-rich elements like tables, quotes, and code blocks
+- **Optimized whitespace** for improved token efficiency
 
-### 4. Robust Error Handling
+### 4. LLM Integration Reliability
 
-- **Saving of raw HTML** in case of conversion failure
-- **Text extraction** as an alternative if conversion fails
-- **Better detection of encoding** of web pages
-- **Generation of meaningful and robust filenames**
+- **Fallback mechanisms** to ensure content is always retrievable
+- **Format consistency** for predictable AI processing
+- **Encoding normalization** for cross-platform compatibility
+- **Intelligent file organization** for systematic knowledge management
 
 ## Adjustable Parameters
 
@@ -122,13 +125,110 @@ To adapt the tool to specific sites, you can modify:
    - Modify the 500 character threshold for additional extraction
    - Adjust the 70% threshold for applying advanced detection
 
+## AI Integration Use Cases
+
+### Enhancing AI-Powered IDEs like Cursor
+
+- **Framework Documentation Updates**: Keep your AI coding assistant up-to-date with the latest framework documentation by scraping official docs
+- **API Reference Integration**: Create clean markdown files from API documentation for more accurate code suggestions
+- **Tutorial Conversion**: Transform web tutorials into markdown for better context when asking for implementation help
+- **Error Solution Repository**: Build a collection of cleaned Stack Overflow or GitHub issue solutions for common errors
+
+### Augmenting LLM Knowledge
+
+- **Technical Documentation**: Feed your LLM with the latest technical documentation that may not be in its training data
+- **Research Papers**: Convert academic papers and research findings into clean markdown for better AI comprehension
+- **Product Documentation**: Create markdown versions of product documentation for more accurate product-specific assistance
+- **Custom Knowledge Base**: Build specialized knowledge repositories for domain-specific AI applications
+
+### Practical Examples
+
+```python
+# Update your AI IDE with the latest React documentation
+python run.py scrape https://reactjs.org/docs/getting-started.html --save --output react_latest.md
+
+# Create a knowledge base from multiple pages
+from app.scraper import scrape_url
+from app.converter import html_to_markdown
+
+urls = [
+    "https://docs.python.org/3/library/asyncio.html",
+    "https://docs.python.org/3/library/concurrent.futures.html"
+]
+
+for url in urls:
+    result = scrape_url(url)
+    markdown = html_to_markdown(result["html"])
+    filename = f"python_async_{url.split('/')[-1].replace('.html', '.md')}"
+    with open(filename, "w") as f:
+        f.write(markdown)
+```
+
 ## Result Examples
 
-With these improvements, the scraper produces:
-- Clean Markdown content without HTML tags
-- No JavaScript scripts or CSS styles
-- No navigation bars or sidebars
-- Only informative main content
+With these improvements, Web2LLM produces:
+
+- **AI-Optimized Content**: Clean, structured markdown without distracting elements
+- **Token-Efficient Format**: No wasted tokens on JavaScript, CSS, or UI elements
+- **Context Window Maximization**: Only the most informative content is preserved
+- **Semantic Structure**: Properly formatted headings, lists, and code blocks for better AI comprehension
+- **Consistent Formatting**: Predictable structure for reliable AI processing
+
+### Before & After Example
+
+**Before processing (raw HTML):**
+```html
+<html>
+<head>
+  <title>API Documentation</title>
+  <style>/* 250KB of CSS */</style>
+  <script>/* 500KB of JavaScript */</script>
+</head>
+<body>
+  <header>
+    <nav><!-- Complex navigation menu --></nav>
+    <div class="search"><!-- Search form --></div>
+  </header>
+  <aside><!-- Sidebar with links --></aside>
+  <main>
+    <h1>API Reference</h1>
+    <p>This documentation describes the REST API...</p>
+    <!-- Actual valuable content -->
+  </main>
+  <footer><!-- Copyright, links, etc. --></footer>
+</body>
+</html>
+```
+
+**After processing (markdown for LLM consumption):**
+```markdown
+# API Reference
+
+This documentation describes the REST API...
+
+## Endpoints
+
+### GET /users
+
+Returns a list of users.
+
+**Parameters:**
+- `limit`: Maximum number of results (default: 20)
+- `offset`: Pagination offset (default: 0)
+
+**Response:**
+```json
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Example User"
+    }
+  ],
+  "total": 100
+}
+```
+```
 
 ## Maintenance and Troubleshooting
 
