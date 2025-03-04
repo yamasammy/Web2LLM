@@ -1,17 +1,17 @@
-# Web Scraper et Convertisseur Markdown pour LLM
+# Web2LLM
 
-Un outil Python avancé pour extraire des données à partir de sites web, nettoyer le contenu et le convertir en Markdown de haute qualité pour une utilisation optimale par des LLM.
+An advanced Python tool for extracting data from websites, cleaning the content, and converting it to high-quality Markdown for optimal use by LLM systems.
 
-## Fonctionnalités
+## Features
 
-- **Extraction intelligente de contenu** de pages web avec élimination des éléments non pertinents
-- **Nettoyage avancé du contenu** :
-  - Suppression des headers, footers, navbars et sidebars
-  - Élimination complète du CSS et JavaScript
-  - Détection intelligente des éléments de navigation par analyse de contenu
-- **Conversion optimisée en Markdown** avec plusieurs méthodes en cascade
-- **API REST** pour l'intégration dans des workflows
-- **Sauvegarde locale** en fichiers .md avec génération de noms pertinents
+- **Intelligent content extraction** from web pages with removal of non-relevant elements
+- **Advanced content cleaning**:
+  - Removal of headers, footers, navbars, and sidebars
+  - Complete elimination of CSS and JavaScript
+  - Intelligent detection of navigation elements through content analysis
+- **Optimized Markdown conversion** with multiple cascading methods
+- **REST API** for workflow integration
+- **Local saving** to .md files with relevant name generation
 
 ## Installation
 
@@ -19,126 +19,126 @@ Un outil Python avancé pour extraire des données à partir de sites web, netto
 pip install -r requirements.txt
 ```
 
-## Utilisation
+## Usage
 
-### En ligne de commande
+### Command Line
 
 ```bash
-# Scraper une URL et afficher le résultat
+# Scrape a URL and display the result
 python run.py scrape https://example.com
 
-# Scraper une URL et sauvegarder en Markdown
+# Scrape a URL and save as Markdown
 python run.py scrape https://example.com --save
 
-# Spécifier un nom de fichier de sortie
-python run.py scrape https://example.com --save --output mon-fichier.md
+# Specify an output filename
+python run.py scrape https://example.com --save --output my-file.md
 ```
 
-### Démarrer l'API
+### Start the API
 
 ```bash
 python -m app.main
 ```
 
-### Utiliser en tant que bibliothèque
+### Use as a Library
 
 ```python
 from app.scraper import scrape_url
 from app.converter import html_to_markdown
 
-# Scraper une URL
+# Scrape a URL
 result = scrape_url("https://example.com")
 html_content = result["html"]
 
-# Convertir en markdown
+# Convert to markdown
 markdown_content = html_to_markdown(html_content)
 
-# Enregistrer dans un fichier
+# Save to a file
 with open("output.md", "w") as f:
     f.write(markdown_content)
 ```
 
 ## API Endpoints
 
-- `POST /scrape` : Scrape une URL et retourne le contenu en Markdown
-- `POST /scrape/save` : Scrape une URL et sauvegarde le contenu en fichier Markdown
+- `POST /scrape`: Scrape a URL and return the content in Markdown
+- `POST /scrape/save`: Scrape a URL and save the content as a Markdown file
 
-## Améliorations majeures
+## Major Improvements
 
-### 1. Extraction intelligente du contenu
+### 1. Intelligent Content Extraction
 
-- **Suppression complète des headers et footers** via une liste exhaustive de sélecteurs CSS
-- **Détection avancée des navbars et sidebars** :
-  - Par sélecteurs CSS standards
-  - Par analyse de densité de liens (menus avec nombreux liens courts)
-  - Par analyse de contenu textuel (termes comme "menu", "navigation")
-  - Par position dans la page (premiers/derniers éléments)
-  - Par attributs CSS (largeur réduite typique des sidebars)
-- **Extraction de contenu supplémentaire** si Readability n'extrait pas suffisamment
-- **Approche équilibrée et adaptative** :
-  - Préservation du contenu riche (>1000 caractères)
-  - Application conditionnelle des méthodes de nettoyage
-  - Seuils ajustables pour différents types de sites
+- **Complete removal of headers and footers** via an exhaustive list of CSS selectors
+- **Advanced detection of navbars and sidebars**:
+  - By standard CSS selectors
+  - By link density analysis (menus with numerous short links)
+  - By textual content analysis (terms like "menu", "navigation")
+  - By position in the page (first/last elements)
+  - By CSS attributes (reduced width typical of sidebars)
+- **Extraction of additional content** if Readability doesn't extract enough
+- **Balanced and adaptive approach**:
+  - Preservation of rich content (>1000 characters)
+  - Conditional application of cleaning methods
+  - Adjustable thresholds for different types of sites
 
-### 2. Élimination complète du CSS et JavaScript
+### 2. Complete Elimination of CSS and JavaScript
 
-- **Suppression de toutes les balises script et style** et leur contenu
-- **Élimination des attributs JavaScript** (onclick, onload, etc.)
-- **Suppression des styles inline** et classes liées au JavaScript
-- **Filtrage des blocs de code** ressemblant à du CSS ou JavaScript
-- **Nettoyage des sections CDATA** pouvant contenir du code
+- **Removal of all script and style tags** and their content
+- **Elimination of JavaScript attributes** (onclick, onload, etc.)
+- **Removal of inline styles** and JavaScript-related classes
+- **Filtering of code blocks** resembling CSS or JavaScript
+- **Cleaning of CDATA sections** that may contain code
 
-### 3. Conversion Markdown optimisée
+### 3. Optimized Markdown Conversion
 
-- **Approche multi-méthodes en cascade** :
-  - Utilisation de html2markdown comme méthode principale
-  - Extraction structurée avec BeautifulSoup en secours
-  - Extraction du texte brut en dernier recours
-- **Nettoyage complet des balises HTML résiduelles**
-- **Traitement spécifique** pour tableaux, citations, blocs de code, images
-- **Double nettoyage** des espaces et sauts de ligne
+- **Multi-method cascading approach**:
+  - Using html2markdown as the main method
+  - Structured extraction with BeautifulSoup as backup
+  - Raw text extraction as a last resort
+- **Complete cleaning of residual HTML tags**
+- **Specific processing** for tables, quotes, code blocks, images
+- **Double cleaning** of spaces and line breaks
 
-### 4. Gestion robuste des erreurs
+### 4. Robust Error Handling
 
-- **Sauvegarde du HTML brut** en cas d'échec de conversion
-- **Extraction du texte** comme alternative si la conversion échoue
-- **Meilleure détection de l'encodage** des pages web
-- **Génération de noms de fichiers** significatifs et robustes
+- **Saving of raw HTML** in case of conversion failure
+- **Text extraction** as an alternative if conversion fails
+- **Better detection of encoding** of web pages
+- **Generation of meaningful and robust filenames**
 
-## Paramètres ajustables
+## Adjustable Parameters
 
-Pour adapter l'outil à des sites spécifiques, vous pouvez modifier :
+To adapt the tool to specific sites, you can modify:
 
-1. **Seuils de détection** dans `detect_nav_by_content()` :
-   - Nombre de liens (actuellement 8)
-   - Pourcentage de liens courts (actuellement 85%)
-   - Longueur de texte considérée comme significative (actuellement 50 caractères par lien)
+1. **Detection thresholds** in `detect_nav_by_content()`:
+   - Number of links (currently 8)
+   - Percentage of short links (currently 85%)
+   - Text length considered significant (currently 50 characters per link)
 
-2. **Sélecteurs CSS** dans `remove_headers_footers()` :
-   - Ajouter des sélecteurs spécifiques pour certains sites
-   - Modifier les listes `header_selectors`, `footer_selectors`, etc.
+2. **CSS selectors** in `remove_headers_footers()`:
+   - Add specific selectors for certain sites
+   - Modify the `header_selectors`, `footer_selectors`, etc. lists
 
-3. **Seuils de contenu** dans `clean_html()` :
-   - Modifier le seuil de 500 caractères pour l'extraction supplémentaire
-   - Ajuster le seuil de 70% pour l'application de la détection avancée
+3. **Content thresholds** in `clean_html()`:
+   - Modify the 500 character threshold for additional extraction
+   - Adjust the 70% threshold for applying advanced detection
 
-## Exemples de résultats
+## Result Examples
 
-Avec ces améliorations, le scraper produit :
-- Un contenu Markdown propre sans balises HTML
-- Aucun script JavaScript ou style CSS
-- Aucune barre de navigation ou barre latérale
-- Uniquement le contenu principal informatif
+With these improvements, the scraper produces:
+- Clean Markdown content without HTML tags
+- No JavaScript scripts or CSS styles
+- No navigation bars or sidebars
+- Only informative main content
 
-## Maintenance et dépannage
+## Maintenance and Troubleshooting
 
-Si vous rencontrez des problèmes avec certains sites :
+If you encounter problems with certain sites:
 
-1. **Vérifiez la structure HTML** du site pour identifier des éléments particuliers
-2. **Ajoutez des sélecteurs CSS spécifiques** dans les listes appropriées
-3. **Ajustez les seuils de détection** pour être plus ou moins agressif
-4. **Utilisez l'option de sauvegarde du HTML brut** pour analyser le contenu original
+1. **Check the HTML structure** of the site to identify particular elements
+2. **Add specific CSS selectors** to the appropriate lists
+3. **Adjust detection thresholds** to be more or less aggressive
+4. **Use the raw HTML saving option** to analyze the original content
 
 ## Configuration
 
-Voir le fichier `.env.example` pour les options de configuration disponibles. 
+See the `.env.example` file for available configuration options. 
